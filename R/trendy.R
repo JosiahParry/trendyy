@@ -30,7 +30,7 @@ trendy <- function(search_terms, from = NA, to = NA, ...) {
   searched_trends <- search_terms %>%
     map(gtrendsR::gtrends, time = time, ...)
 
-  searched_terms["search_terms"] <- search_terms
+  #searched_trends["search_terms"] <- search_terms
 
   structure(
     searched_trends,
