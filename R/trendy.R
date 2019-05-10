@@ -27,10 +27,15 @@ trendy <- function(search_terms, from = NA, to = NA, ...) {
     time <- "today+5-y"
   }
 
-  searched_trends <- search_terms %>%
-    map(gtrendsR::gtrends, time = time, ...)
+  if (length(search_terms) <= 5) {
+    searched_trends <- gtrendsR::gtrends(search_terms, time = time, ...) %>%
+      list()
+  } else {
+    searched_trends <- search_terms %>%
+      map(gtrendsR::gtrends, time = time, ...)
+  }
 
-  #searched_trends["search_terms"] <- search_terms
+
 
   structure(
     searched_trends,
