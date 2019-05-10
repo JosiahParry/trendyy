@@ -18,7 +18,7 @@
 #' @return A tibble containing related search tearms
 get_related_queries <- function(trendy) {
   map_dfr(trendy, pluck("related_queries")) %>%
-    left_join(mutate(categories, id = as.integer(id)),
+    left_join(mutate(gtrendsR::categories, id = as.integer(id)),
               by = c("category" = "id")) %>%
     select(-category) %>%
     rename(category = name) %>%
@@ -47,7 +47,7 @@ get_related_queries <- function(trendy) {
 #'
 get_related_topics <- function(trendy) {
   map_dfr(trendy, pluck("related_topics")) %>%
-    left_join(mutate(categories, id = as.integer(id)),
+    left_join(mutate(gtrendsR::categories, id = as.integer(id)),
               by = c("category" = "id")) %>%
     select(-category) %>%
     rename(category = name) %>%
@@ -76,6 +76,10 @@ get_related_topics <- function(trendy) {
 get_interest <- function(trendy) {
   map_dfr(.x = trendy, ~pluck(.x, "interest_over_time") %>%
             mutate(hits = str_extract(hits, "[0-9]+"))) %>%
+    left_join(mutate(gtrendsR::categories, id = as.integer(id)),
+              by = c("category" = "id")) %>%
+    select(-category) %>%
+    rename(category = name) %>%
     as_tibble()
 }
 
@@ -125,7 +129,7 @@ get_interest_country <- function(trendy) {
 
 #' Retrieve interest by DMA
 #'
-#' Extract a tibble of interest by dDMA from trendy object
+#' Extract a tibble of interest by DMA from trendy object
 #' @param trendy An object of class trendy created via \code{trendy()}
 #'
 #' @export
@@ -140,7 +144,8 @@ get_interest_country <- function(trendy) {
 #' }
 #'
 get_interest_dma <- function(trendy) {
-  map_dfr(trendy, pluck("interest_by_dma"))
+  map_dfr(trendy, pluck("interest_by_dma")) %>%
+    as_tibble()
 }
 
 
