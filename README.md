@@ -2,9 +2,9 @@
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
- <center><h2> \~trendyy\~ </h2></center>
+ <center><h2> ~trendyy~ </h2></center>
 
-<center> <h2> (>\^.\^)> \~ Tidy Access to Google Trends \~ <(\^.\^<) </h2></center>
+<center> <h2> (>^.^)> ~ Tidy Access to Google Trends ~ <(^.^<) </h2></center>
 
 `trendyy` is a package to provide a tidy interface to the [`gtrendsR`](https://github.com/PMassicotte/gtrendsR) package by [Philippe Massicotte](http://www.pmassicotte.com/). 
 
