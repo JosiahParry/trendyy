@@ -7,6 +7,7 @@
 #' @importFrom purrr map_dfr pluck
 #' @importFrom dplyr mutate
 #' @importFrom stringr str_extract
+#' @importFrom tibble as_tibble
 #'
 #' @examples
 #' \dontrun{
@@ -21,6 +22,7 @@ get_related_queries <- function(trendy) {
               by = c("category" = "id")) %>%
     select(-category) %>%
     rename(category = name) %>%
+    as_tibble() %>%
     return()
 }
 
@@ -36,6 +38,7 @@ get_related_queries <- function(trendy) {
 #' @importFrom purrr map_dfr pluck
 #' @importFrom dplyr mutate
 #' @importFrom stringr str_extract
+#' @importFrom tibble as_tibble
 #' @examples
 #' \dontrun{
 #' ob <- trendy("obama")
@@ -48,6 +51,7 @@ get_related_topics <- function(trendy) {
               by = c("category" = "id")) %>%
     select(-category) %>%
     rename(category = name) %>%
+    as_tibble() %>%
     return()
 }
 
@@ -62,6 +66,7 @@ get_related_topics <- function(trendy) {
 #' @importFrom purrr map_dfr pluck
 #' @importFrom dplyr mutate
 #' @importFrom stringr str_extract
+#' @importFrom tibble as_tibble
 #' @examples
 #' \dontrun{
 #' ob <- trendy("obama")
@@ -70,7 +75,8 @@ get_related_topics <- function(trendy) {
 #'
 get_interest <- function(trendy) {
   map_dfr(.x = trendy, ~pluck(.x, "interest_over_time") %>%
-            mutate(hits = str_extract(hits, "[0-9]+")))
+            mutate(hits = str_extract(hits, "[0-9]+"))) %>%
+    as_tibble()
 }
 
 
@@ -83,6 +89,7 @@ get_interest <- function(trendy) {
 #' @importFrom purrr map_dfr pluck
 #' @importFrom dplyr mutate
 #' @importFrom stringr str_extract
+#' @importFrom tibble as_tibble
 #' @examples
 #' \dontrun{
 #' ob <- trendy("obama")
@@ -90,7 +97,8 @@ get_interest <- function(trendy) {
 #' }
 #'
 get_interest_city <- function(trendy) {
-  map_dfr(trendy, pluck("interest_by_city"))
+  map_dfr(trendy, pluck("interest_by_city")) %>%
+    as_tibble()
 }
 
 #' Retrieve interest by country
@@ -102,6 +110,7 @@ get_interest_city <- function(trendy) {
 #' @importFrom purrr map_dfr pluck
 #' @importFrom dplyr mutate
 #' @importFrom stringr str_extract
+#' @importFrom tibble as_tibble
 #' @examples
 #' \dontrun{
 #' ob <- trendy("obama")
@@ -109,7 +118,8 @@ get_interest_city <- function(trendy) {
 #' }
 #'
 get_interest_country <- function(trendy) {
-  map_dfr(trendy, pluck("interest_by_country"))
+  map_dfr(trendy, pluck("interest_by_country")) %>%
+    as_tibble()
 }
 
 
@@ -122,6 +132,7 @@ get_interest_country <- function(trendy) {
 #' @importFrom purrr map_dfr pluck
 #' @importFrom dplyr mutate
 #' @importFrom stringr str_extract
+#' @importFrom tibble as_tibble
 #' @examples
 #' \dontrun{
 #' ob <- trendy("obama")
@@ -142,6 +153,7 @@ get_interest_dma <- function(trendy) {
 #' @importFrom purrr map_dfr pluck
 #' @importFrom dplyr mutate
 #' @importFrom stringr str_extract
+#' @importFrom tibble as_tibble
 #' @examples
 #' \dontrun{
 #' ob <- trendy("obama")
@@ -149,5 +161,6 @@ get_interest_dma <- function(trendy) {
 #' }
 
 get_interest_region <- function(trendy) {
-  map_dfr(trendy, pluck("interest_by_region"))
+  map_dfr(trendy, pluck("interest_by_region")) %>%
+    as_tibble()
 }
