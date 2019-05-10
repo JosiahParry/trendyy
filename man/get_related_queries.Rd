@@ -10,7 +10,7 @@ get_related_queries(trendy)
 \item{trendy}{An object of class trendy created via \code{trendy()}}
 }
 \value{
-A tibble containing related search tearms
+A tibble containing related search terms
 }
 \description{
 Extract tibble of related queries from trendy object

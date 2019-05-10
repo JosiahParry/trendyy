@@ -1,4 +1,4 @@
-Package: trendy
+Package: trendyy
 Title: A Tidy Wrapper Around gtrendsR
 Version: 0.1.0
 Date: 2019-05-08
@@ -16,6 +16,7 @@ Depends:
   R (>= 3.2.0)
 Imports:
   gtrendsR,
+  magrittr,
   dplyr,
   purrr,
   crayon,

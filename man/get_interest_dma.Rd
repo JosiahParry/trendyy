@@ -10,7 +10,7 @@ get_interest_dma(trendy)
 \item{trendy}{An object of class trendy created via \code{trendy()}}
 }
 \description{
-Extract a tibble of interest by dDMA from trendy object
+Extract a tibble of interest by DMA from trendy object
 }
 \examples{
 \dontrun{

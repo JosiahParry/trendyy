@@ -1,6 +1,6 @@
 #' Google Trends Search
 #'
-#' Search Google Trends to retrieve relative hits and popularity. Note that this does not have the ability to compare trends as gtrendsR does (yet).
+#' Search Google Trends to retrieve relative hits and popularity. This supports comparison of up to 5 search terms. Anything more than that will be searched individually.
 #'
 #' @param search_terms A character vector containing the search terms of interest
 #' @param from The beginning date of the query
@@ -11,6 +11,8 @@
 #' @importFrom purrr map map_chr pluck
 #' @importFrom dplyr group_by summarise
 #' @importFrom crayon bold
+#' @importFrom magrittr %>%
+#' @importFrom gtrendsR gtrends
 #' @return An object of class `trendy`
 #'
 #' @examples

@@ -2,3 +2,7 @@
 ^\.Rproj\.user$
 ^\.Rproj$
 ^gtrends\.R$
+^cran-comments\.md$
+^README\.md$
+^NEWS\.md$
+^CRAN-RELEASE$

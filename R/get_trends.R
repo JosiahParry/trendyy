@@ -1,3 +1,8 @@
+if(getRversion() >= "2.15.1")  {
+
+  utils::globalVariables(c("category", "hits", "id", "keyword", "name", "pull"))
+}
+
 #' Retrieve related queries
 #'
 #' Extract tibble of related queries from trendy object
@@ -5,7 +10,7 @@
 #'
 #' @export
 #' @importFrom purrr map_dfr pluck
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate rename select left_join
 #' @importFrom stringr str_extract
 #' @importFrom tibble as_tibble
 #'
@@ -15,7 +20,7 @@
 #' get_related_queries(ob)
 #' }
 #'
-#' @return A tibble containing related search tearms
+#' @return A tibble containing related search terms
 get_related_queries <- function(trendy) {
   map_dfr(trendy, pluck("related_queries")) %>%
     left_join(mutate(gtrendsR::categories, id = as.integer(id)),
@@ -36,7 +41,7 @@ get_related_queries <- function(trendy) {
 #'
 #' @export
 #' @importFrom purrr map_dfr pluck
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate rename select left_join
 #' @importFrom stringr str_extract
 #' @importFrom tibble as_tibble
 #' @examples
@@ -64,9 +69,10 @@ get_related_topics <- function(trendy) {
 #'
 #' @export
 #' @importFrom purrr map_dfr pluck
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate rename select left_join
 #' @importFrom stringr str_extract
 #' @importFrom tibble as_tibble
+#' @importFrom magrittr %>%
 #' @examples
 #' \dontrun{
 #' ob <- trendy("obama")
@@ -91,9 +97,10 @@ get_interest <- function(trendy) {
 #'
 #' @export
 #' @importFrom purrr map_dfr pluck
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate rename select left_join
 #' @importFrom stringr str_extract
 #' @importFrom tibble as_tibble
+#' @importFrom magrittr %>%
 #' @examples
 #' \dontrun{
 #' ob <- trendy("obama")
@@ -112,9 +119,10 @@ get_interest_city <- function(trendy) {
 #'
 #' @export
 #' @importFrom purrr map_dfr pluck
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate rename select left_join
 #' @importFrom stringr str_extract
 #' @importFrom tibble as_tibble
+#' @importFrom magrittr %>%
 #' @examples
 #' \dontrun{
 #' ob <- trendy("obama")
@@ -134,9 +142,10 @@ get_interest_country <- function(trendy) {
 #'
 #' @export
 #' @importFrom purrr map_dfr pluck
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate rename select left_join
 #' @importFrom stringr str_extract
 #' @importFrom tibble as_tibble
+#' @importFrom magrittr %>%
 #' @examples
 #' \dontrun{
 #' ob <- trendy("obama")
@@ -156,9 +165,10 @@ get_interest_dma <- function(trendy) {
 #'
 #' @export
 #' @importFrom purrr map_dfr pluck
-#' @importFrom dplyr mutate
+#' @importFrom dplyr mutate rename select left_join
 #' @importFrom stringr str_extract
 #' @importFrom tibble as_tibble
+#' @importFrom magrittr %>%
 #' @examples
 #' \dontrun{
 #' ob <- trendy("obama")

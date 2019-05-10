@@ -19,7 +19,7 @@ trendy(search_terms, from = NA, to = NA, ...)
 An object of class `trendy`
 }
 \description{
-Search Google Trends to retrieve relative hits and popularity. Note that this does not have the ability to compare trends as gtrendsR does (yet).
+Search Google Trends to retrieve relative hits and popularity. This supports comparison of up to 5 search terms. Anything more than that will be searched individually.
 }
 \examples{
 \dontrun{
