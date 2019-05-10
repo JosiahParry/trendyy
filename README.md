@@ -2,7 +2,7 @@
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
-## ~trendy~
+## \~trendy\~
 
 `trendy` is a package to provide a tidy interface to the [`gtrendsR`](https://github.com/PMassicotte/gtrendsR) package by [Philippe Massicotte](http://www.pmassicotte.com/). 
 
