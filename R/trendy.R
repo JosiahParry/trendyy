@@ -1,7 +1,34 @@
+#' Google Trends Search
+#'
+#' Search Google Trends to retrieve relative hits and popularity. Note that this does not have the ability to compare trends as gtrendsR does (yet).
+#'
+#' @param search_terms A character vector containing the search terms of interest
+#' @param from The beginning date of the query
+#' @param to The beginning date of the query
+#' @param ... arguments passed to \code{gtrendsR::gtrends()}. See ?gtrendsR::gtrends for more information including geography, language, and time-zone.
+#'
+#' @export
+#' @importFrom purrr map map_chr pluck
+#' @importFrom dplyr group_by summarise
+#' @importFrom crayon bold
+#' @return An object of class `trendy`
+#'
+#' @examples
+#' \dontrun{
+#' trendy("RStudio 1.2")
+#' }
+#'
+
 trendy <- function(search_terms, from = NA, to = NA, ...) {
 
+  if (!all(is.na(from), is.na(to))) {
+    time <- paste(from, to, sep = " ")
+  } else {
+    time <- "today+5-y"
+  }
+
   searched_trends <- search_terms %>%
-    map(gtrends, ...)
+    map(gtrends, time = time, ...)
 
   structure(
     searched_trends,
@@ -9,21 +36,3 @@ trendy <- function(search_terms, from = NA, to = NA, ...) {
           )
 
 }
-
-
-print.trendy <- function(x) {
-  cat((crayon::bold("~Trendy results~\n")))
-  cat("\nSearch Terms: ")
-  cat(paste(map_chr(x, pluck("search_terms")), sep = " "), sep = ", ")
-  cat("\n\n(>'-')> ~~~~~~~~~~~~~~~~~~~~ Summary ~~~~~~~~~~~~~~~~~~~~ <('-'<)\n")
-  print(x %>%
-    get_interest() %>%
-    group_by(keyword) %>%
-    summarise(max_hits = max(hits),
-              min_hits = min(hits),
-              from = as.Date(min(date)),
-              to = as.Date(max(date))))
-  invisible(x)
-}
-
-
