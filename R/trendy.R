@@ -29,6 +29,7 @@ trendy <- function(search_terms, from = NA, to = NA, ...) {
     time <- "today+5-y"
   }
 
+
   if (length(search_terms) <= 5) {
     searched_trends <- gtrendsR::gtrends(search_terms, time = time, ...) %>%
       list()

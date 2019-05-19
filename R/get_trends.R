@@ -13,6 +13,7 @@ if(getRversion() >= "2.15.1")  {
 #' @importFrom dplyr mutate rename select left_join
 #' @importFrom stringr str_extract
 #' @importFrom tibble as_tibble
+#' @importFrom magrittr %>%
 #'
 #' @examples
 #' \dontrun{
@@ -44,6 +45,7 @@ get_related_queries <- function(trendy) {
 #' @importFrom dplyr mutate rename select left_join
 #' @importFrom stringr str_extract
 #' @importFrom tibble as_tibble
+#' @importFrom magrittr %>%
 #' @examples
 #' \dontrun{
 #' ob <- trendy("obama")
@@ -97,8 +99,6 @@ get_interest <- function(trendy) {
 #'
 #' @export
 #' @importFrom purrr map_dfr pluck
-#' @importFrom dplyr mutate rename select left_join
-#' @importFrom stringr str_extract
 #' @importFrom tibble as_tibble
 #' @importFrom magrittr %>%
 #' @examples
@@ -119,8 +119,6 @@ get_interest_city <- function(trendy) {
 #'
 #' @export
 #' @importFrom purrr map_dfr pluck
-#' @importFrom dplyr mutate rename select left_join
-#' @importFrom stringr str_extract
 #' @importFrom tibble as_tibble
 #' @importFrom magrittr %>%
 #' @examples
@@ -142,8 +140,6 @@ get_interest_country <- function(trendy) {
 #'
 #' @export
 #' @importFrom purrr map_dfr pluck
-#' @importFrom dplyr mutate rename select left_join
-#' @importFrom stringr str_extract
 #' @importFrom tibble as_tibble
 #' @importFrom magrittr %>%
 #' @examples
@@ -165,8 +161,6 @@ get_interest_dma <- function(trendy) {
 #'
 #' @export
 #' @importFrom purrr map_dfr pluck
-#' @importFrom dplyr mutate rename select left_join
-#' @importFrom stringr str_extract
 #' @importFrom tibble as_tibble
 #' @importFrom magrittr %>%
 #' @examples
