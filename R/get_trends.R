@@ -53,6 +53,11 @@ get_related_queries <- function(trendy) {
 #' }
 #'
 get_related_topics <- function(trendy) {
+
+  if (is.null(pluck(trendy, "related_topics"))) {
+    stop("No related topics")
+  }
+
   map_dfr(trendy, pluck("related_topics")) %>%
     left_join(mutate(gtrendsR::categories, id = as.integer(id)),
               by = c("category" = "id")) %>%
@@ -88,7 +93,8 @@ get_interest <- function(trendy) {
               by = c("category" = "id")) %>%
     select(-category) %>%
     rename(category = name) %>%
-    as_tibble()
+    as_tibble() %>%
+    mutate(hits = as.integer(hits))
 }
 
 
@@ -100,6 +106,7 @@ get_interest <- function(trendy) {
 #' @export
 #' @importFrom purrr map_dfr pluck
 #' @importFrom tibble as_tibble
+#' @importFrom dplyr mutate
 #' @importFrom magrittr %>%
 #' @examples
 #' \dontrun{
@@ -109,7 +116,8 @@ get_interest <- function(trendy) {
 #'
 get_interest_city <- function(trendy) {
   map_dfr(trendy, pluck("interest_by_city")) %>%
-    as_tibble()
+    as_tibble() %>%
+    mutate(hits = as.integer(hits))
 }
 
 #' Retrieve interest by country
@@ -120,6 +128,7 @@ get_interest_city <- function(trendy) {
 #' @export
 #' @importFrom purrr map_dfr pluck
 #' @importFrom tibble as_tibble
+#' @importFrom dplyr mutate
 #' @importFrom magrittr %>%
 #' @examples
 #' \dontrun{
@@ -129,7 +138,8 @@ get_interest_city <- function(trendy) {
 #'
 get_interest_country <- function(trendy) {
   map_dfr(trendy, pluck("interest_by_country")) %>%
-    as_tibble()
+    as_tibble() %>%
+    mutate(hits = as.integer(hits))
 }
 
 
@@ -140,6 +150,7 @@ get_interest_country <- function(trendy) {
 #'
 #' @export
 #' @importFrom purrr map_dfr pluck
+#' @importFrom dplyr mutate
 #' @importFrom tibble as_tibble
 #' @importFrom magrittr %>%
 #' @examples
@@ -150,7 +161,8 @@ get_interest_country <- function(trendy) {
 #'
 get_interest_dma <- function(trendy) {
   map_dfr(trendy, pluck("interest_by_dma")) %>%
-    as_tibble()
+    as_tibble() %>%
+    mutate(hits = as.integer(hits))
 }
 
 
@@ -161,6 +173,7 @@ get_interest_dma <- function(trendy) {
 #'
 #' @export
 #' @importFrom purrr map_dfr pluck
+#' @importFrom dplyr mutate
 #' @importFrom tibble as_tibble
 #' @importFrom magrittr %>%
 #' @examples
@@ -171,5 +184,6 @@ get_interest_dma <- function(trendy) {
 
 get_interest_region <- function(trendy) {
   map_dfr(trendy, pluck("interest_by_region")) %>%
-    as_tibble()
+    as_tibble() %>%
+    mutate(hits = as.integer(hits))
 }
