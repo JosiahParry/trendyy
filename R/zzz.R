@@ -1,4 +1,6 @@
 #' Create print method for trendy object
+#' @name trendy
+#' @param x trendy object
 #' @importFrom dplyr pull group_by summarise
 #' @export
 print.trendy <- function(x, ...) {
