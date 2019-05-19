@@ -1,7 +1,7 @@
 Package: trendyy
 Title: A Tidy Wrapper Around 'gtrendsR'
-Version: 0.1.0
-Date: 2019-05-13
+Version: 0.1.1
+Date: 2019-05-19
 Authors@R: c(
   person("Josiah", "Parry", email = "josiah.parry@gmail.com", role = c("aut", "cre"))
   )
